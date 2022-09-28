@@ -19,17 +19,18 @@ public class Jatek {
         int statuszSablon = sc.nextInt();
         this.harcosok = harcosok;
         harcosok.add(0, new Harcos(name, statuszSablon));
-
+        menu();
 
     }
 
     private void menu() {
         System.out.println((korokszama + 1) + ". kör kezdete");
         for (int i = 0; i < harcosok.size(); i++) {
-            if (i == 1) {
+            if (i == 0) {
                 System.out.print("(Saját) ");
             }
-            System.out.println((i + 1) + ". " + harcosok.get(i).toString());
+            System.out.printf("%d. Név: %s HP: %d DMG: %s\n", i + 1,harcosok.get(i).getNev(),
+                    harcosok.get(i).getEletero(), harcosok.get(i).getSebzes());
 
         }
         System.out.println("Válassza ki mit szeretne tenni");
@@ -55,6 +56,7 @@ public class Jatek {
     }
 
     public void megKuzd() {
+        sc.nextLine();
         System.out.print("Adja meg melyik harcossal akar megküzdeni: ");
         String tmpIndex = sc.nextLine();
         int index = -1;
@@ -79,7 +81,8 @@ public class Jatek {
     }
 
     public void kilep() {
-
+        System.out.println("Kilépés...");
+        System.exit(0);
     }
 
     private void korVege() {
@@ -93,8 +96,11 @@ public class Jatek {
             System.out.println(harcosok.get(rndIndex).toString());
             harcosok.get(rndIndex).megkuzd(harcosok.get(0));
             System.out.println("Harc eredménye");
-            System.out.println("Saját harcos - " + harcosok.get(0).toString());
-            System.out.println("Kihívó harcos - " + harcosok.get(rndIndex));
+            System.out.printf("Saját harcos: Név: %s HP: %d DMG: %s\n",harcosok.get(0).getNev(),
+                    harcosok.get(0).getEletero(), harcosok.get(0).getSebzes());
+
+            System.out.printf("Kihívó harcos: Név: %s HP: %d DMG: %s\n",harcosok.get(rndIndex).getNev(),
+                    harcosok.get(rndIndex).getEletero(), harcosok.get(rndIndex).getSebzes());
             for (Harcos h:harcosok) {
                 h.gyogyul();
             }

@@ -25,7 +25,7 @@ public class Harcos {
                 alapSebzes = 4;
                 break;
         }
-        eletero = alapEletero;
+        eletero = getMaxEletero();
     }
     // -----------------------------------------------------------------------------
     // Alap getterek
@@ -132,9 +132,11 @@ public class Harcos {
             if (this.getEletero() > 0) {
                 this.setSzint(this.getSzint() + 5);
             } else {
+                this.setEletero(0);
                 masikHarcos.setSzint(masikHarcos.getSzint() + 10);
             }
             if (masikHarcos.getEletero() > 0) {
+                masikHarcos.setEletero(0);
                 masikHarcos.setSzint(masikHarcos.getSzint() + 5);
             } else {
                 this.setSzint(this.getSzint() + 10);
@@ -153,8 +155,8 @@ public class Harcos {
 
     @Override
     public String toString() {
-        return String.format("%s - LVL: %s - EXP: %d - HP: %d - DMG: %d",
-                nev, szint, tapasztalat / getSzintLepeshez(), eletero / getMaxEletero(), getSebzes());
+        return String.format("%s - LVL: %s - EXP: %d - HP: %d%% - DMG: %d",
+                nev, szint, tapasztalat / getSzintLepeshez(), eletero / getMaxEletero() * 100, getSebzes());
     }
 
 
